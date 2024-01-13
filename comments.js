@@ -1,12 +1,13 @@
-// create a webserver
+//create web server
 const http = require("http");
 
-const host = "localhost";
-const port = 8000;
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Hello World\n");
+});
 
-const requestListener = function (req, res) {};
-
-const server = http.createServer(requestListener);
-server.listen(port, host, () => {
-  console.log(`Server is running on http://${host}:${port}`);
+const port = 3000;
+server.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
 });
