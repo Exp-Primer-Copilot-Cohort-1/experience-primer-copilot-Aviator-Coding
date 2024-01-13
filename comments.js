@@ -1,13 +1,20 @@
-//create web server
-const http = require("http");
+// Create web server
+const express = require("express");
+const app = express();
+const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World\n");
+app.get("/", (req, res) => {
+  res.send("Hello, this is the homepage!");
 });
 
-const port = 3000;
-server.listen(port, () => {
+app.get("/about", (req, res) => {
+  res.send("Hello, this is the about page!");
+});
+
+app.use((req, res) => {
+  res.status(404).send("Page not found");
+});
+
+app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
